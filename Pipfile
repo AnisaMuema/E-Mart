@@ -11,6 +11,9 @@ flask-marshmallow = "*"
 marshmallow-sqlalchemy = "*"
 flask-cors = "*"
 flask-migrate = "*"
+flask-bcrypt = "*"
+flask-jwt-extended = "*"
+pyjwt = "==1.6.1"
 
 [dev-packages]
 

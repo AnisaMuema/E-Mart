@@ -1,5 +1,6 @@
 from flask import Blueprint, make_response, jsonify
 from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
+from flask_bcrypt import Bcrypt
 from flask_restful import Api, Resource, abort, reqparse
 from flask_marshmallow import Marshmallow
 
@@ -7,6 +8,7 @@ from models import User, db
 
 user_bp = Blueprint('user_bp', __name__)
 ma=Marshmallow(user_bp)
+bcrypt = Bcrypt()
 api = Api(user_bp)
 
 
@@ -44,8 +46,8 @@ class Users(Resource):
         user = User.query.filter_by(email=data.email).first()
         if user:
             abort(409, detail="Username with the same email already exists")
-
-        new_user = User(name=data['name'], email=data['email'], password=data['password'])
+        hashed_password = bcrypt.generate_password_hash(data['password'])
+        new_user = User(name=data['name'], email=data['email'], password=hashed_password)
         db.session.add(new_user)
         db.session.commit()
 

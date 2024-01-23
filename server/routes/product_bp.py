@@ -2,6 +2,7 @@ from flask import Blueprint, make_response, jsonify
 from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
 from flask_restful import Api, Resource, abort, reqparse
 from flask_marshmallow import Marshmallow
+from flask_jwt_extended import jwt_required
 
 from models import Product, db
 
@@ -39,7 +40,8 @@ class Products(Resource):
         response = make_response(jsonify(result), 200)
 
         return response
-
+    
+    @jwt_required
     def post(self):
         data = post_args.parse_args()
 
@@ -71,6 +73,7 @@ class ProductById(Resource):
             response = make_response(jsonify(result), 200)
             return response
 
+    @jwt_required
     def patch(self, id):
         single_product = Product.query.filter_by(id=id).first()
 
@@ -89,7 +92,7 @@ class ProductById(Resource):
         return response
 
         
-
+    @jwt_required
     def delete(self, id):
         product = Product.query.filter_by(id=id).first()
         if not product:
