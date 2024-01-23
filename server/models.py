@@ -9,9 +9,9 @@ class User(db.Model):
     name = db.Column(db.String, nullable=False)
     email = db.Column(db.String, nullable=False)
     password = db.Column(db.String, nullable=False)
-    orderItems = db.relationship('OrderItem', backref='user_orderItem')
-    profiles = db.relationship('Profile', backref='user_profile')
-    reviews = db.relationship('Review', backref='user_review')
+    orderItems = db.relationship('OrderItem', backref='user')
+    profiles = db.relationship('Profile', backref='user')
+    reviews = db.relationship('Review', backref='user')
 
     def __repr__(self):
         return f'<User {self.name}>'
@@ -49,8 +49,8 @@ class Product(db.Model):
     description = db.Column(db.String)
     quantity = db.Column(db.Integer)
     price = db.Column(db.Integer)
-    categories = db.relationship('Category', backref='product_category')
-    reviews = db.relationship('Review', backref='product_review')
+    categories = db.relationship('Category', backref='product')
+    reviews = db.relationship('Review', backref='product')
 
     def __repr__(self):
         return f'<Product {self.name}>'
