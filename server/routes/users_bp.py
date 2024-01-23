@@ -84,15 +84,8 @@ class UserById(Resource):
         response = make_response(jsonify(result), 200)
 
         return response
-
-        
-
-    def delete(self, id):
-        user = User.query.filter_by(id=id).first()
-        if not user:
-            abort(404, detail=f'user with {id} does not exist')
-        db.session.delete(user)
-        db.session.commit()
+    
+    
 
 
 api.add_resource(UserById, '/users/<int:id>')
