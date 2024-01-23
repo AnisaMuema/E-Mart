@@ -4,7 +4,9 @@ from models import db
 from routes.users_bp import user_bp
 from routes.product_bp import product_bp
 from routes.profile_bp import profile_bp
-
+from routes.reviews_bp import review_bp
+from routes.orderItems_bp import orderItem_bp
+from routes.categories_bp import category_bp
 
 
 def create_app():
@@ -17,6 +19,9 @@ def create_app():
     app.register_blueprint(user_bp)
     app.register_blueprint(product_bp)
     app.register_blueprint(profile_bp)
+    app.register_blueprint(review_bp)
+    app.register_blueprint(orderItem_bp)
+    app.register_blueprint(category_bp)
 
 
     
