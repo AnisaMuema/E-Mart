@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_migrate import Migrate
 from models import db
+from datetime import datetime, timedelta
 import os
 from routes.users_bp import user_bp, bcrypt
 from routes.product_bp import product_bp
@@ -18,7 +19,8 @@ def create_app():
     app.config['SQLALCHEMY_TRACK_MODIFICATION']=False
     app.config['SECRET_KEY']= '39uhqfh34h340920i4hfd-2='
     # app.config['JWT_ACCESS_TOKEN_EXPIRES']=timedelta(hours=2)
-
+    
+    
 
     db.init_app(app)
     jwt.init_app(app)
@@ -31,6 +33,7 @@ def create_app():
     app.register_blueprint(review_bp)
     app.register_blueprint(orderItem_bp)
     app.register_blueprint(category_bp)
+    app.register_blueprint(auth_bp)
 
 
     

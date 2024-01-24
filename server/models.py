@@ -6,7 +6,8 @@ class User(db.Model):
     __tablename__ = "users"
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String, nullable=False)
+    firstname=db.Column(db.String, nullable=False)
+    lastname = db.Column(db.String, nullable=False)
     email = db.Column(db.String, nullable=False)
     password = db.Column(db.String, nullable=False)
     orderItems = db.relationship('OrderItem', backref='user')
@@ -14,7 +15,7 @@ class User(db.Model):
     reviews = db.relationship('Review', backref='user')
 
     def __repr__(self):
-        return f'<User {self.name}>'
+        return f'<User {self.firstname} {self.lastname}>'
     
 class Profile(db.Model):
     __tablename__ = "profiles"

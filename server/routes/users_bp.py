@@ -14,15 +14,19 @@ api = Api(user_bp)
 
 
 post_args = reqparse.RequestParser()
-post_args.add_argument('name', type=str, required=True, help='Name is required')
+post_args.add_argument('firstname', type=str, required=True, help='Fisrt Name is required')
+post_args.add_argument('lastname', type=str, required=True, help='Last Name is required')
 post_args.add_argument('email', type=str, required=True, help='Email is required')
 post_args.add_argument('password', type=str, required=True, help='Password is required')
 
 
+
 patch_args = reqparse.RequestParser()
-patch_args.add_argument('name', type=str)
+patch_args.add_argument('firstname', type=str)
+patch_args.add_argument('lastname', type=str)
 patch_args.add_argument('email', type=str)
 patch_args.add_argument('password', type=str)
+
 
 
 class UserSchema(SQLAlchemyAutoSchema):
@@ -45,9 +49,9 @@ class Users(Resource):
         # error handling
         user = User.query.filter_by(email=data.email).first()
         if user:
-            abort(409, detail="Username with the same email already exists")
+            abort(409, detail="User with the same email already exists")
         hashed_password = bcrypt.generate_password_hash(data['password'])
-        new_user = User(name=data['name'], email=data['email'], password=hashed_password)
+        new_user = User(firstname=data['firstname'], lastname=data['lastname'], email=data['email'], password=hashed_password)
         db.session.add(new_user)
         db.session.commit()
 
@@ -63,7 +67,7 @@ class UserById(Resource):
         single_user = User.query.filter_by(id=id).first()
 
         if not single_user:
-            abort(404, detail=f'user with {id} does not exist')
+            abort(404, detail=f'user with  id {id} does not exist')
 
         else:
             result = userschema.dump(single_user)
@@ -74,7 +78,7 @@ class UserById(Resource):
         single_user = User.query.filter_by(id=id).first()
 
         if not single_user:
-            abort(404, detail=f'user with {id} does not exist')
+            abort(404, detail=f'user with id {id} does not exist')
 
         data = patch_args.parse_args()
         for key, value in data.items():

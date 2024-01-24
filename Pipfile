@@ -13,7 +13,8 @@ flask-cors = "*"
 flask-migrate = "*"
 flask-bcrypt = "*"
 flask-jwt-extended = "*"
-pyjwt = "==1.6.1"
+pyjwt = "*"
+react-icons = "*"
 
 [dev-packages]
 

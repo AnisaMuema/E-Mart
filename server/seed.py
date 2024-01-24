@@ -6,43 +6,53 @@ from models import db, User, Product, Category, Profile, Review, OrderItem
 
 with app.app_context():
     users = [{
-            "name": "Monroe",
+            "firstname": "Monroe",
+            "lastname": "Marylne",
             "email": "mcomrie0@reverbnation.com",
             "password": "vU@XSB/tRIS/e5yv"
             }, {
-            "name": "Adan",
+            "firstname": "Bin",
+            "lastname": "Adan",
             "email": "aschaffler1@google.nl",
             "password": "cJKqp{O/@$="
             }, {
-            "name": "Kaleena",
+            "firstname": "Bree",  
+            "lastname": "Kaleena",
             "email": "kfrisel2@nature.com",
             "password": "zEmRG1,4lqgyV0=6"
             }, {
-            "name": "Ingram",
+            "firstname": "Brenda",
+            "lastname": "Ingram",
             "email": "imacdermid3@admin.ch",
             "password": "kAW5hAUW+<lkZ1@"
             }, {
-            "name": "Rodrick",
+            "firstname": "Rodrick",
+            "lastname": "Gitonga",
             "email": "rbloxland4@infoseek.co.jp",
             "password": "tKc8WE7?!"
             }, {
-            "name": "Stacey",
+            "firstname": "Ondrea",
+            "lastname": "Stacey",
             "email": "sdraycott5@drupal.org",
             "password": "eFuwr,!un"
             }, {
-            "name": "Craig",
+            "firstname": "Fredrik",
+            "lastname": "Craig",
             "email": "cmatthewson6@nydailynews.com",
             "password": "fDC|n%>t/u"
             }, {
-            "name": "Kristofor",
+            "firstname": "Princeton",
+            "lastname": "Kristofor",
             "email": "kgolley7@bigcartel.com",
             "password": "iGOPW37..N&#{c"
             }, {
-            "name": "Gretal",
+            "firstname": "Gretal",
+            "lastname": "Moohn",
             "email": "gwall8@mapy.cz",
             "password": "wW).x00+Uw"
             }, {
-            "name": "Mathew",
+            "firstname": "Mathew",
+            "lastname": "Griffin",
             "email": "mkeunemann9@fc2.com",
             "password": "wXNkf5co*rpn9|R"
             }]

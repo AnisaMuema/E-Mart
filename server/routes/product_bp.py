@@ -34,6 +34,8 @@ class ProductSchema(SQLAlchemyAutoSchema):
 productschema = ProductSchema()
 
 class Products(Resource):
+    
+    
     def get(self):
         products = Product.query.all()
         result = productschema.dump(products, many=True)
@@ -41,7 +43,7 @@ class Products(Resource):
 
         return response
     
-    @jwt_required
+    @jwt_required()
     def post(self):
         data = post_args.parse_args()
 
@@ -73,7 +75,7 @@ class ProductById(Resource):
             response = make_response(jsonify(result), 200)
             return response
 
-    @jwt_required
+    @jwt_required()
     def patch(self, id):
         single_product = Product.query.filter_by(id=id).first()
 
@@ -92,7 +94,7 @@ class ProductById(Resource):
         return response
 
         
-    @jwt_required
+    @jwt_required()
     def delete(self, id):
         product = Product.query.filter_by(id=id).first()
         if not product:

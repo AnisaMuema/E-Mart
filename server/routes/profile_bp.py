@@ -45,11 +45,11 @@ class Profiles(Resource):
         data = post_args.parse_args()
 
         # error handling
-        profile = Profile.query.filter_by(description=data.description).first()
+        profile = Profile.query.filter_by(firstname=data['firstname'], lastname=data['lastname']).first()
         if profile:
-            abort(409, detail="Productname with the same description already exists")
+            abort(409, detail="Productname with the same profile already exists")
 
-        new_profile = Profile(name=data['name'], description=data['description'], quantity=data['quantity'], price=data['price'])
+        new_profile = Profile(firstname=data['firstname'], lastname=data['lastname'], location=data['location'])
         db.session.add(new_profile)
         db.session.commit()
 
