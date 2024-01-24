@@ -28,7 +28,7 @@ class UserRegister(Resource):
         if data["password"] != data["confirmPassword"]:
             return abort(422, detail="Passwords do not match")
         
-        new_user = User( firstname=data.firstname, lastname=data.lastname, email=data.email, password=bcrypt.generate_password_hash(data.password).decode('utf-8'))
+        new_user = User( firstname=data.firstname, lastname=data.lastname, email=data.email, password=bcrypt.generate_password_hash(data.password).decode('utf-8'), confirmPassword=data.password)
         db.session.add(new_user)
         db.session.commit()
 

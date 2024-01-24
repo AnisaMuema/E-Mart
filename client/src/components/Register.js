@@ -17,35 +17,35 @@ const Register = () => {
     setUser({ ...user, [name]: value })
   }
 
-  const PostData = async (e) => {
+  const PostData = (e, firstname, lastname, email, password, confirmPassword) => {
     e.preventDefault()
 
-        const { firstname, lastname, email, password, confirmPassword } = user;
-
-        const res = await fetch('/register', {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                firstname, lastname, email, password, confirmPassword
-            })
-        });
-
-        const data = await res.json();
-
+    fetch('/register', {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            firstname, lastname, email, password, confirmPassword
+        })
+    })
+    .then(res => {
         if (res.status === 201) {
-            
-            localStorage.setItem('token', data.token)
-            window.alert("Registration Successful")
-
-            navigate.push('/')
-            window.location.reload();
-
+            return res.json()
         } else {
-            window.alert("Registration Failed")
+            throw new Error('Registration Failed')
         }
-  }
+    })
+    .then(data => {
+        console.log(data)
+            
+            navigate('/')
+    })
+    .catch(error => {
+        window.alert("Registration Failed")
+        console.log(error)
+    });
+}
     
     
 
