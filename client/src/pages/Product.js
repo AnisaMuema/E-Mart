@@ -1,27 +1,22 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useContext } from "react";
+import { ProductContext } from '../context/product-context'
+
+// import { NavLink } from 'react-router-dom';
 
 
-const Product = ({ product }) => {
-  <div>
-    <h3>{product.name}</h3>
-    <p>Description: {product.description}</p>
-    <p>Quantity: {product.quantity}</p>
-    <p>Price: ${product.price}</p>
-  </div>
+const Product = (props) => {
+  const { id, name, description, price} = props.data
+  const { addToCart, cartItems } = useContext(ProductContext);
 
-
+  const cartItemCount = cartItems[id];
 
   return (
-    <div class="card" style="width: 18rem;">
-    <div class="card-body">
-    <h5 class="card-title">{product.name}</h5>
-    <p class="card-text">{product.description}</p>
-    <h6 class="card-subtitle mb-2 text-muted">{product.price}</h6>
-    <NavLink href="/cart" class="card-link">Add to Cart</NavLink>
-    
+  <div>
+    <h3>{name}</h3>
+    <p>Description: {description}</p>
+    <p>Price: ${price}</p>
+    <button onClick={() => addToCart(id)} >Add to cart {cartItemCount > 0 && <> ({cartItemCount})</>}</button>
   </div>
-</div>
   )
 };
 
