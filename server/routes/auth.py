@@ -28,15 +28,13 @@ class UserRegister(Resource):
         if data["password"] != data["confirmPassword"]:
             return abort(422, detail="Passwords do not match")
         
-        new_user = User( firstname=data.firstname, lastname=data.lastname, email=data.email, password=bcrypt.generate_password_hash(data.password).decode('utf-8'), confirmPassword=data.password)
+        new_user = User( firstname=data.firstname, lastname=data.lastname, email=data.email, password=bcrypt.generate_password_hash(data.password).decode('utf-8'))
         db.session.add(new_user)
         db.session.commit()
 
         metadata = {"firstname": new_user.firstname}
         token = create_access_token(identity=new_user.id, additional_claims=metadata)
         return {'detail': f'User {data.firstname} {data.lastname} has been created successfully', 'access token': token}
-
-
 
 api.add_resource(UserRegister, "/register")
         
@@ -55,7 +53,6 @@ class Login(Resource):
         token = create_access_token(identity=user.id)
         return {"access_token": token, "user_id":user.id,"firstname":user.firstname,"lastname":user.lastname,"email":user.email}
             
-
 api.add_resource(Login, "/login")
 
 

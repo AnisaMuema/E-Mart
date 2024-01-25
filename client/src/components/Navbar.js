@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { ShoppingCart } from 'phosphor-react'
 
 const Navbar = () => {
   return (
@@ -17,6 +18,13 @@ const Navbar = () => {
             <li className="nav-item">
               <NavLink className="nav-link active" aria-current="page" to="/">HOME</NavLink>
             </li>
+
+            <li className="nav-item">
+              <NavLink className="nav-link active" aria-current="page" to="/cart">
+                 <ShoppingCart size={32}/> 
+              </NavLink>
+            </li>
+
             <li className="nav-item">
               <NavLink className="nav-link" to="/login">LOGIN</NavLink>
             </li>

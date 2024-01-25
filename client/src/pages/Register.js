@@ -29,22 +29,12 @@ const Register = () => {
             firstname, lastname, email, password, confirmPassword
         })
     })
-    .then(res => {
-        if (res.status === 201) {
-            return res.json()
-        } else {
-            throw new Error('Registration Failed')
-        }
-    })
+    .then(res => res.json())
+        
     .then(data => {
         console.log(data)
-            
             navigate('/')
     })
-    .catch(error => {
-        window.alert("Registration Failed")
-        console.log(error)
-    });
 }
     
     
