@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_migrate import Migrate
+from flask_cors import CORS, cross_origin
 from models import db
 from datetime import datetime, timedelta
 import os
@@ -10,6 +11,7 @@ from routes.reviews_bp import review_bp
 from routes.orderItems_bp import orderItem_bp
 from routes.categories_bp import category_bp
 from routes.auth import auth_bp, jwt
+
 
 
 
@@ -35,6 +37,7 @@ def create_app():
     app.register_blueprint(category_bp)
     app.register_blueprint(auth_bp)
 
+    CORS(app)
 
     
     return app
